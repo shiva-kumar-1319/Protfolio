@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
-import { PORTFOLIO_CONFIG } from '../data/portfolioData';
+import { PORTFOLIO_DATA } from '../data/portfolioData';
 import { GithubIcon, LinkedinIcon } from './BrandIcons';
 import confetti from 'canvas-confetti';
 import {
+  Mail,
   Copy,
   Check,
   Send,
-  Code2,
-  Terminal,
-  Sparkles,
   MessageSquare,
-  AlertCircle,
-  Phone,
+  ExternalLink,
+  MapPin,
 } from 'lucide-react';
 
 export const ContactSection: React.FC = () => {
@@ -19,21 +17,19 @@ export const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    domain: 'Both SDE & AI/ML',
+    topic: 'Software Engineering / AI Opportunity',
     message: '',
   });
-  const [errorMsg, setErrorMsg] = useState('');
-  const [readyToLaunchMail, setReadyToLaunchMail] = useState(false);
 
   const copyEmail = () => {
-    navigator.clipboard.writeText(PORTFOLIO_CONFIG.socials.email);
+    navigator.clipboard.writeText(PORTFOLIO_DATA.socials.email);
     setCopied(true);
     try {
       confetti({
         particleCount: 40,
         spread: 60,
         origin: { y: 0.8 },
-        colors: ['#4a2810', '#6b3a1a', '#a8c4e8'],
+        colors: ['#3B82F6', '#22D3EE', '#8B5CF6'],
       });
     } catch {
       // safe fallback
@@ -43,325 +39,244 @@ export const ContactSection: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
-      setErrorMsg('Please fill in your name, email, and message.');
-      return;
-    }
-
-    if (!formData.email.includes('@') || !formData.email.includes('.')) {
-      setErrorMsg('Please provide a valid email address.');
-      return;
-    }
-
-    setErrorMsg('');
-    setReadyToLaunchMail(true);
-
-    const subject = encodeURIComponent(`[Portfolio Inquiry - ${formData.domain}] From ${formData.name}`);
+    const subject = encodeURIComponent(`[${formData.topic}] From ${formData.name}`);
     const body = encodeURIComponent(
-      `Hello Shiva,\n\nName: ${formData.name}\nEmail: ${formData.email}\nDomain Interest: ${formData.domain}\n\nMessage:\n${formData.message}\n`
+      `Hi Shiva,\n\nName: ${formData.name}\nEmail: ${formData.email}\nTopic: ${formData.topic}\n\nMessage:\n${formData.message}\n`
     );
-    window.location.href = `mailto:${PORTFOLIO_CONFIG.socials.email}?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${PORTFOLIO_DATA.socials.email}?subject=${subject}&body=${body}`;
   };
 
   return (
-    <section id="contact" className="relative">
-      
-      {/* SHRINITHI-STYLE "LET'S BUILD" BANNER */}
-      <div className="bg-[#6b3a1a] py-16 px-4 sm:px-8 text-center relative overflow-hidden text-[#f0e8d8] border-b border-[#4a2810]/20">
-        <span
-          className="font-archivo absolute -bottom-6 left-1/2 -translate-x-1/2 text-7xl sm:text-9xl text-white/5 select-none pointer-events-none whitespace-nowrap uppercase"
-          aria-hidden="true"
-        >
-          Let's Build Together
-        </span>
+    <section
+      id="contact"
+      className="relative py-24 bg-[#070A12] border-b border-blue-900/30 overflow-hidden"
+    >
+      {/* Ambient background glows */}
+      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-[#3B82F6]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#22D3EE]/5 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="relative z-10 max-w-2xl mx-auto">
-          <span className="text-[10px] font-mono uppercase tracking-[2px] text-[#a8c4e8] font-bold block mb-2">
-            AVAILABLE FOR FULL-TIME SDE & AI/ML ROLES
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-archivo uppercase text-white mb-4 tracking-tight">
-            Have a Problem to Solve? Let's Talk.
-          </h2>
-          <p className="text-xs sm:text-sm text-[#f0e8d8]/85 mb-6 leading-relaxed">
-            Whether you need a backend engineer who understands distributed queues and database locking, or an AI engineer who evaluates LLMs beyond shallow prompts—I am ready to contribute.
-          </p>
-
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <a
-              href={`mailto:${PORTFOLIO_CONFIG.socials.email}?subject=Opportunity%20Inquiry%20-%20Shiva%20Kumar`}
-              className="btn-sky px-7 py-3 text-xs shadow-md"
-            >
-              Get in Touch →
-            </a>
-            <a
-              href={PORTFOLIO_CONFIG.socials.resumeUrl}
-              download="Shiva_Kumar_Resume.pdf"
-              className="btn-brown px-7 py-3 text-xs shadow-md border border-white/20"
-            >
-              Download Resume (PDF)
-            </a>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#101A2B] border border-blue-500/30 text-xs font-code text-[#22D3EE] mb-4">
+            <Mail className="w-3.5 h-3.5" />
+            <span>DIRECT CHANNELS & INQUIRIES</span>
           </div>
+
+          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#F8FAFC] mb-4">
+            Let's Build Something Great.
+          </h2>
+
+          <p className="text-base sm:text-lg text-[#94A3B8] leading-relaxed">
+            Interested in AI/ML, Cloud Engineering, Distributed Systems, Backend Engineering, Research, Internships, and collaborative projects.
+          </p>
         </div>
-      </div>
 
-      {/* 2-COLUMN CONTACT DISPATCH SECTION */}
-      <div className="bg-[#f5f0e4] py-20 px-4 sm:px-6 lg:px-8 border-b border-[#4a2810]/10">
-        <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Left Column: Direct channels */}
-          <div className="lg:col-span-5 space-y-5">
-            <div>
-              <span className="text-[10px] font-mono uppercase tracking-[2px] text-[#8b5a2a] block mb-1 font-bold">
-                COMMUNICATION
-              </span>
-              <h3 className="text-2xl sm:text-3xl font-archivo uppercase text-[#4a2810] tracking-tight">
-                Direct Channels
-              </h3>
-              <p className="text-xs text-[#4a2810]/80 mt-1">
-                Reach out directly via email, connect on LinkedIn, or inspect my repositories on GitHub.
-              </p>
-            </div>
+          {/* Left Column: 3 Contact Cards */}
+          <div className="lg:col-span-5 space-y-4">
+            
+            {/* Card 1: Email */}
+            <div className="engineering-card rounded-2xl p-6 group">
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-3 rounded-xl bg-[#070A12] border border-blue-950 text-[#22D3EE] group-hover:border-[#22D3EE]/50 transition-colors">
+                    <Mail className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="font-code text-[11px] text-slate-500 block uppercase">
+                      Direct Email
+                    </span>
+                    <a
+                      href={`mailto:${PORTFOLIO_DATA.socials.email}`}
+                      className="text-sm sm:text-base font-bold text-white hover:text-[#22D3EE] transition-colors font-code"
+                    >
+                      {PORTFOLIO_DATA.socials.email}
+                    </a>
+                  </div>
+                </div>
 
-            {/* Email Box */}
-            <div className="bg-white p-5 rounded-2xl border-2 border-[#4a2810]/12 shadow-sm">
-              <span className="text-[10px] font-mono uppercase text-[#8b5a2a] font-bold block mb-1">
-                Direct Email
-              </span>
-              <div className="flex items-center justify-between gap-3">
-                <span className="text-xs font-mono font-bold text-[#4a2810] truncate">
-                  {PORTFOLIO_CONFIG.socials.email}
-                </span>
                 <button
                   type="button"
                   onClick={copyEmail}
-                  className="px-3 py-1 rounded-full bg-[#f5f0e4] hover:bg-[#a8c4e8] text-[11px] font-mono font-bold text-[#4a2810] transition-colors flex items-center gap-1 shrink-0"
+                  className="p-2.5 rounded-xl bg-[#070A12] border border-blue-950 text-slate-400 hover:text-white hover:border-[#3B82F6] transition-colors"
+                  title="Copy email address"
+                  aria-label="Copy email address"
                 >
-                  {copied ? (
-                    <>
-                      <Check className="w-3 h-3 text-emerald-800" />
-                      <span>Copied!</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-3 h-3" />
-                      <span>Copy</span>
-                    </>
-                  )}
+                  {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
                 </button>
               </div>
+            </div>
 
-              <div className="mt-3 pt-3 border-t border-[#4a2810]/10 flex items-center gap-2 text-xs font-mono text-[#8b5a2a]">
-                <Phone className="w-3.5 h-3.5 text-[#4a2810]" />
-                <a href={`tel:${PORTFOLIO_CONFIG.socials.phone}`} className="hover:text-[#4a2810]">
-                  {PORTFOLIO_CONFIG.socials.phone}
+            {/* Card 2: LinkedIn */}
+            <div className="engineering-card rounded-2xl p-6 group">
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-3 rounded-xl bg-[#070A12] border border-blue-950 text-[#38BDF8] group-hover:border-[#38BDF8]/50 transition-colors">
+                    <LinkedinIcon className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="font-code text-[11px] text-slate-500 block uppercase">
+                      Professional Network
+                    </span>
+                    <a
+                      href={PORTFOLIO_DATA.socials.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm sm:text-base font-bold text-white hover:text-[#38BDF8] transition-colors"
+                    >
+                      linkedin.com/in/shiva-kumar-kavali
+                    </a>
+                  </div>
+                </div>
+
+                <a
+                  href={PORTFOLIO_DATA.socials.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2.5 rounded-xl bg-[#070A12] border border-blue-950 text-slate-400 hover:text-[#38BDF8] hover:border-[#38BDF8] transition-colors"
+                  title="Open LinkedIn"
+                  aria-label="Open LinkedIn Profile"
+                >
+                  <ExternalLink className="w-4 h-4" />
                 </a>
               </div>
             </div>
 
-            {/* Social Links List */}
-            <div className="space-y-2">
-              <a
-                href={PORTFOLIO_CONFIG.socials.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between p-3.5 rounded-xl bg-white hover:bg-[#faf6f0] border border-[#4a2810]/12 transition-all group"
-              >
-                <div className="flex items-center gap-2.5 text-xs font-bold text-[#4a2810]">
-                  <GithubIcon className="w-4 h-4" />
-                  <span>GitHub Profile</span>
+            {/* Card 3: GitHub */}
+            <div className="engineering-card rounded-2xl p-6 group">
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-3 rounded-xl bg-[#070A12] border border-blue-950 text-white group-hover:border-white/50 transition-colors">
+                    <GithubIcon className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="font-code text-[11px] text-slate-500 block uppercase">
+                      Code Repositories
+                    </span>
+                    <a
+                      href={PORTFOLIO_DATA.socials.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm sm:text-base font-bold text-white hover:text-[#22D3EE] transition-colors font-code"
+                    >
+                      github.com/shiva-kumar-1319
+                    </a>
+                  </div>
                 </div>
-                <span className="text-[11px] font-mono text-[#8b5a2a] group-hover:text-[#4a2810]">
-                  @shiva-kumar-1319 ↗
-                </span>
-              </a>
 
-              <a
-                href={PORTFOLIO_CONFIG.socials.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between p-3.5 rounded-xl bg-white hover:bg-[#faf6f0] border border-[#4a2810]/12 transition-all group"
-              >
-                <div className="flex items-center gap-2.5 text-xs font-bold text-[#4a2810]">
-                  <LinkedinIcon className="w-4 h-4 text-[#3B82F6]" />
-                  <span>LinkedIn Profile</span>
-                </div>
-                <span className="text-[11px] font-mono text-[#8b5a2a] group-hover:text-[#4a2810]">
-                  shiva-kumar-kavali ↗
-                </span>
-              </a>
-
-              <a
-                href={PORTFOLIO_CONFIG.socials.leetcode}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between p-3.5 rounded-xl bg-white hover:bg-[#faf6f0] border border-[#4a2810]/12 transition-all group"
-              >
-                <div className="flex items-center gap-2.5 text-xs font-bold text-[#4a2810]">
-                  <Code2 className="w-4 h-4 text-[#FFA116]" />
-                  <span>LeetCode Profile</span>
-                </div>
-                <span className="text-[11px] font-mono font-bold text-[#FFA116]">
-                  500+ Solved ↗
-                </span>
-              </a>
-
-              <a
-                href={PORTFOLIO_CONFIG.socials.codeforces}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between p-3.5 rounded-xl bg-white hover:bg-[#faf6f0] border border-[#4a2810]/12 transition-all group"
-              >
-                <div className="flex items-center gap-2.5 text-xs font-bold text-[#4a2810]">
-                  <Terminal className="w-4 h-4 text-[#1890FF]" />
-                  <span>Codeforces Profile</span>
-                </div>
-                <span className="text-[11px] font-mono font-bold text-[#1890FF]">
-                  1200+ Rating ↗
-                </span>
-              </a>
-
-              <a
-                href={PORTFOLIO_CONFIG.socials.codechef}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between p-3.5 rounded-xl bg-white hover:bg-[#faf6f0] border border-[#4a2810]/12 transition-all group"
-              >
-                <div className="flex items-center gap-2.5 text-xs font-bold text-[#4a2810]">
-                  <Sparkles className="w-4 h-4 text-[#F97316]" />
-                  <span>CodeChef Profile</span>
-                </div>
-                <span className="text-[11px] font-mono font-bold text-[#F97316]">
-                  3-Star Rated ↗
-                </span>
-              </a>
+                <a
+                  href={PORTFOLIO_DATA.socials.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2.5 rounded-xl bg-[#070A12] border border-blue-950 text-slate-400 hover:text-white hover:border-slate-500 transition-colors"
+                  title="Open GitHub"
+                  aria-label="Open GitHub Profile"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
             </div>
+
+            {/* Location & Timezone info */}
+            <div className="p-4 rounded-xl bg-[#101A2B] border border-blue-950 flex items-center justify-between text-xs font-code text-[#94A3B8]">
+              <span className="flex items-center gap-1.5">
+                <MapPin className="w-3.5 h-3.5 text-[#22D3EE]" />
+                <span>Hyderabad, India</span>
+              </span>
+              <span className="text-emerald-400 font-semibold">● Open to Relocation & Remote</span>
+            </div>
+
           </div>
 
-          {/* Right Column: Contact Message Form */}
+          {/* Right Column: Interactive "Let's Connect" Message Form */}
           <div className="lg:col-span-7">
-            <div className="bg-white p-6 sm:p-8 rounded-3xl border-2 border-[#4a2810]/12 shadow-sm">
-              <div className="flex items-center gap-2 mb-2">
-                <MessageSquare className="w-5 h-5 text-[#4a2810]" />
-                <h3 className="text-xl font-archivo uppercase text-[#4a2810]">
-                  Direct Message Composer
+            <div className="engineering-card rounded-3xl p-7 sm:p-9 border border-blue-500/25">
+              <div className="flex items-center gap-2 mb-6 pb-4 border-b border-blue-950">
+                <MessageSquare className="w-5 h-5 text-[#22D3EE]" />
+                <h3 className="font-heading font-bold text-xl text-[#F8FAFC]">
+                  Send a Direct Message
                 </h3>
               </div>
-              <p className="text-xs text-[#8b5a2a] mb-6">
-                This form prepares a direct formatted dispatch via your default mail client.
-              </p>
-
-              {errorMsg && (
-                <div className="mb-4 p-3 rounded-xl bg-red-50 border border-red-200 flex items-center gap-2 text-xs text-red-800">
-                  <AlertCircle className="w-4 h-4 shrink-0 text-red-600" />
-                  <span>{errorMsg}</span>
-                </div>
-              )}
-
-              {readyToLaunchMail && (
-                <div className="mb-4 p-3 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center gap-2 text-xs text-emerald-800">
-                  <Check className="w-4 h-4 shrink-0 text-emerald-600" />
-                  <span>
-                    Mail client triggered! You can also reach me directly at <strong>{PORTFOLIO_CONFIG.socials.email}</strong>.
-                  </span>
-                </div>
-              )}
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label
-                      htmlFor="contact-name"
-                      className="block text-[11px] font-mono uppercase font-bold text-[#8b5a2a] mb-1.5"
-                    >
-                      Your Name *
+                    <label className="block text-xs font-code text-[#94A3B8] mb-1.5 uppercase">
+                      Your Name
                     </label>
                     <input
-                      id="contact-name"
                       type="text"
                       required
+                      placeholder="e.g. Alex Miller"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="e.g. Alex Morgan"
-                      className="w-full px-4 py-2.5 text-xs bg-[#faf6f0] border border-[#4a2810]/15 rounded-xl text-[#4a2810] placeholder-[#8b5a2a]/60 focus:border-[#4a2810] focus:ring-1 focus:ring-[#4a2810] outline-none transition-all"
+                      className="w-full px-4 py-3 rounded-xl bg-[#070A12] border border-blue-900/50 text-sm text-[#F8FAFC] placeholder-slate-600 focus:outline-none focus:border-[#22D3EE] focus:ring-1 focus:ring-[#22D3EE] transition-all"
                     />
                   </div>
 
                   <div>
-                    <label
-                      htmlFor="contact-email"
-                      className="block text-[11px] font-mono uppercase font-bold text-[#8b5a2a] mb-1.5"
-                    >
-                      Your Email *
+                    <label className="block text-xs font-code text-[#94A3B8] mb-1.5 uppercase">
+                      Your Email
                     </label>
                     <input
-                      id="contact-email"
                       type="email"
                       required
+                      placeholder="alex@company.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="e.g. alex@company.com"
-                      className="w-full px-4 py-2.5 text-xs bg-[#faf6f0] border border-[#4a2810]/15 rounded-xl text-[#4a2810] placeholder-[#8b5a2a]/60 focus:border-[#4a2810] focus:ring-1 focus:ring-[#4a2810] outline-none transition-all"
+                      className="w-full px-4 py-3 rounded-xl bg-[#070A12] border border-blue-900/50 text-sm text-[#F8FAFC] placeholder-slate-600 focus:outline-none focus:border-[#22D3EE] focus:ring-1 focus:ring-[#22D3EE] transition-all"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="contact-domain"
-                    className="block text-[11px] font-mono uppercase font-bold text-[#8b5a2a] mb-1.5"
-                  >
-                    Opportunity Domain Focus
+                  <label className="block text-xs font-code text-[#94A3B8] mb-1.5 uppercase">
+                    Subject / Discussion Area
                   </label>
                   <select
-                    id="contact-domain"
-                    value={formData.domain}
-                    onChange={(e) => setFormData({ ...formData, domain: e.target.value })}
-                    className="w-full px-4 py-2.5 text-xs bg-[#faf6f0] border border-[#4a2810]/15 rounded-xl text-[#4a2810] focus:border-[#4a2810] focus:ring-1 focus:ring-[#4a2810] outline-none transition-all font-semibold"
+                    value={formData.topic}
+                    onChange={(e) => setFormData({ ...formData, topic: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl bg-[#070A12] border border-blue-900/50 text-sm text-[#F8FAFC] focus:outline-none focus:border-[#22D3EE] focus:ring-1 focus:ring-[#22D3EE] transition-all"
                   >
-                    <option value="Both SDE & AI/ML">Dual-Role: Both SDE & AI/ML</option>
-                    <option value="Software Development Engineer (SDE)">Software Development Engineer (SDE)</option>
-                    <option value="AI & Machine Learning Engineer (AI/ML)">AI & Machine Learning Engineer (AI/ML)</option>
-                    <option value="Distributed Systems / Backend">Distributed Systems / Backend</option>
-                    <option value="Generative AI & LLMs">Generative AI & LLMs</option>
+                    <option value="SDE & Backend Engineering Role">Software Development Engineer (SDE) Role</option>
+                    <option value="AI/ML Engineering Role">AI/ML Engineer Role</option>
+                    <option value="Cloud & Distributed Systems Project">Cloud & Distributed Systems Engineering</option>
+                    <option value="Summer / Immediate Internship">Internship Opportunity</option>
+                    <option value="General Technical Inquiry">Technical Collaboration & Networking</option>
                   </select>
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="contact-message"
-                    className="block text-[11px] font-mono uppercase font-bold text-[#8b5a2a] mb-1.5"
-                  >
-                    Message / Opportunity Details *
+                  <label className="block text-xs font-code text-[#94A3B8] mb-1.5 uppercase">
+                    Your Message
                   </label>
                   <textarea
-                    id="contact-message"
-                    required
                     rows={4}
+                    required
+                    placeholder="Tell me about your team, project, or opportunity..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Describe your project, team requirements, or open roles..."
-                    className="w-full px-4 py-3 text-xs bg-[#faf6f0] border border-[#4a2810]/15 rounded-xl text-[#4a2810] placeholder-[#8b5a2a]/60 focus:border-[#4a2810] focus:ring-1 focus:ring-[#4a2810] outline-none transition-all resize-none"
+                    className="w-full px-4 py-3 rounded-xl bg-[#070A12] border border-blue-900/50 text-sm text-[#F8FAFC] placeholder-slate-600 focus:outline-none focus:border-[#22D3EE] focus:ring-1 focus:ring-[#22D3EE] transition-all resize-none"
                   />
                 </div>
 
-                <div className="pt-2 flex flex-wrap items-center justify-between gap-3">
-                  <span className="text-[11px] font-mono text-[#8b5a2a]">
-                    Dispatches directly via your default email client.
-                  </span>
-
-                  <button
-                    type="submit"
-                    className="btn-brown px-7 py-3 text-xs shadow-md flex items-center gap-2 hover:scale-[1.01]"
-                  >
-                    <Send className="w-3.5 h-3.5" />
-                    <span>Send Message (mailto)</span>
-                  </button>
-                </div>
+                {/* Primary Button: Let's Connect */}
+                <button
+                  type="submit"
+                  className="w-full py-4 rounded-xl bg-gradient-to-r from-[#3B82F6] via-[#2563EB] to-[#1D4ED8] hover:from-[#60A5FA] hover:to-[#3B82F6] text-white font-semibold text-sm shadow-[0_4px_25px_rgba(59,130,246,0.4)] hover:shadow-[0_4px_30px_rgba(34,211,238,0.5)] transition-all flex items-center justify-center gap-2 active:scale-98"
+                >
+                  <Send className="w-4 h-4" />
+                  <span>Let's Connect</span>
+                </button>
               </form>
             </div>
           </div>
+
         </div>
+
       </div>
     </section>
   );

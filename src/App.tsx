@@ -1,81 +1,61 @@
-import React, { useState } from 'react';
-import type { DomainType } from './data/portfolioData';
+import React from 'react';
 import { ScrollProgressBar } from './components/ScrollProgressBar';
+import { InteractiveBackground } from './components/InteractiveBackground';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
-import { PhilosophySection } from './components/PhilosophySection';
-import { ProjectsSection } from './components/ProjectsSection';
-import { DualArchitectureGraphic } from './components/DualArchitectureGraphic';
-import { ExperienceAchievements } from './components/ExperienceAchievements';
+import { QuickStatsSection } from './components/QuickStatsSection';
+import { AboutSection } from './components/AboutSection';
 import { SkillsSection } from './components/SkillsSection';
+import { ProjectsSection } from './components/ProjectsSection';
+import { AchievementsAndCertifications } from './components/AchievementsAndCertifications';
 import { CompetitiveProgramming } from './components/CompetitiveProgramming';
-import { EducationSection } from './components/EducationSection';
+import { BuildingAndLearning } from './components/BuildingAndLearning';
+import { GitHubAnalytics } from './components/GitHubAnalytics';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 
 export const App: React.FC = () => {
-  const [currentDomain, setCurrentDomain] = useState<DomainType>('all');
-
-  const handleDomainChange = (domain: DomainType) => {
-    setCurrentDomain(domain);
-  };
-
   return (
-    <div className="relative min-h-screen bg-[#f5f0e4] text-[#4a2810] selection:bg-[#a8c4e8] selection:text-[#4a2810]">
-      {/* Scroll Progress Bar */}
+    <div className="relative min-h-screen bg-[#070A12] text-[#F8FAFC] selection:bg-[#3B82F6]/30 selection:text-[#22D3EE]">
+      {/* Top Scroll Progress Indicator */}
       <ScrollProgressBar />
 
-      {/* Navigation Header with Marquee Ticker */}
-      <Navbar
-        currentDomain={currentDomain}
-        onDomainChange={handleDomainChange}
-      />
+      {/* Subtle Distributed Network Mesh Canvas */}
+      <InteractiveBackground />
 
-      {/* Main Landmark for Accessibility */}
+      {/* Sticky Navigation Header */}
+      <Navbar />
+
+      {/* Main Landmark */}
       <main id="main-content" className="relative z-10">
-        {/* 1. Hero Section: Photo with Resume, Mail, LeetCode, GitHub */}
-        <HeroSection
-          currentDomain={currentDomain}
-          onSelectDomain={handleDomainChange}
-        />
+        {/* 1. Hero Section: First Impression */}
+        <HeroSection />
 
-        {/* 2. Engineering Philosophy & Reality Check (User's Principles) */}
-        <PhilosophySection />
+        {/* 2. Quick Profile Statistics: 4 Metric Cards */}
+        <QuickStatsSection />
 
-        {/* 3. Featured Projects Showcase with Dual-Domain Filter */}
-        <ProjectsSection
-          currentDomain={currentDomain}
-          onSelectDomain={handleDomainChange}
-        />
+        {/* 3. About Me: 4 Engineering Focus Areas */}
+        <AboutSection />
 
-        {/* 4. Production Process & Architecture Simulator */}
-        <section className="py-16 bg-[#ffffff] border-b border-[#4a2810]/10">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <DualArchitectureGraphic
-              currentDomain={currentDomain}
-              onSelectDomain={handleDomainChange}
-            />
-          </div>
-        </section>
+        {/* 4. Technical Skills: Categorized Cards & Badges */}
+        <SkillsSection />
 
-        {/* 5. Work Experience, Verified Achievements & Certifications */}
-        <ExperienceAchievements
-          currentDomain={currentDomain}
-        />
+        {/* 5. Featured Projects: CloudPulse, NeuralQuery, IDQS, Animal Keypoint */}
+        <ProjectsSection />
 
-        {/* 6. Technical Competencies (Depth over Breadth) */}
-        <SkillsSection
-          currentDomain={currentDomain}
-          onSelectDomain={handleDomainChange}
-        />
+        {/* 6. Experience, Achievements & Certifications */}
+        <AchievementsAndCertifications />
 
-        {/* 7. Competitive Programming (LeetCode 500+, Codeforces 1200+, CodeChef 3★) */}
+        {/* 7. Competitive Programming & DSA */}
         <CompetitiveProgramming />
 
-        {/* 8. Formal Education (B.Tech at MVSR & Diploma at KDR) */}
-        <EducationSection />
+        {/* 8. Currently Building & Learning */}
+        <BuildingAndLearning />
 
-        {/* 9. Contact & Collaboration */}
+        {/* 9. GitHub Analytics & Activity */}
+        <GitHubAnalytics />
+
+        {/* 10. Contact Section */}
         <ContactSection />
       </main>
 
