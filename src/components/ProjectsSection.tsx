@@ -3,7 +3,7 @@ import type { DomainType, ProjectItem } from '../data/portfolioData';
 import { PORTFOLIO_CONFIG } from '../data/portfolioData';
 import { ProjectModal } from './ProjectModal';
 import { GithubIcon } from './BrandIcons';
-import { Terminal, Brain, ExternalLink, ArrowRight, Activity, Sparkles } from 'lucide-react';
+import { Terminal, Brain, ArrowRight, Server, Activity } from 'lucide-react';
 
 interface ProjectsSectionProps {
   currentDomain: DomainType;
@@ -21,48 +21,59 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ currentDomain,
     return true;
   });
 
+  const getDomainIcon = (domain: string) => {
+    switch (domain) {
+      case 'ai-ml':
+        return <Brain className="w-8 h-8 text-[#4a2810]/40" />;
+      case 'sde':
+        return <Server className="w-8 h-8 text-[#4a2810]/40" />;
+      default:
+        return <Activity className="w-8 h-8 text-[#4a2810]/40" />;
+    }
+  };
+
   return (
-    <section id="projects" className="relative py-20 border-t border-blue-900/30">
+    <section id="projects" className="relative py-20 bg-[#f5f0e4] border-b border-[#4a2810]/10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        
+        {/* Section Header (Shrinithi style) */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0B1930] border border-blue-500/30 text-xs font-mono text-[#22D3EE] mb-3">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>FEATURED SYSTEMS & APPLICATIONS</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#F8FAFC] tracking-tight">
-              Engineering Showcase
+            <span className="text-[11px] font-mono uppercase tracking-[2px] text-[#8b5a2a] block mb-2 font-bold">
+              FEATURED ENGINEERING & RESEARCH
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-archivo uppercase text-[#4a2810] tracking-tight">
+              Selected Works
             </h2>
-            <p className="mt-2 text-sm text-[#94A3B8] max-w-2xl">
-              Scalable distributed backends, self-healing platforms, and parameter-tuned AI pipelines. Select any project to inspect its architecture and implementation breakdown.
+            <p className="mt-2 text-xs sm:text-sm text-[#4a2810]/80 max-w-2xl leading-relaxed">
+              Real systems engineered with measurable impact. Evaluated on real benchmarks, stress-tested with chaos engineering, and built for high-concurrency resilience.
             </p>
           </div>
 
-          {/* Filter Tabs */}
-          <div className="flex items-center p-1 rounded-xl bg-[#080F1F] border border-blue-900/60" role="tablist">
+          {/* Filter Pills */}
+          <div className="flex items-center p-1 rounded-full bg-white border border-[#4a2810]/15 shadow-sm text-xs font-semibold" role="tablist">
             <button
               type="button"
               role="tab"
               aria-selected={currentDomain === 'all'}
               onClick={() => onSelectDomain('all')}
-              className={`px-4 py-2 text-xs font-semibold rounded-lg transition-all ${
+              className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
                 currentDomain === 'all'
-                  ? 'bg-gradient-to-r from-[#2563EB] to-[#22D3EE] text-[#05070D]'
-                  : 'text-[#94A3B8] hover:text-white'
+                  ? 'bg-[#4a2810] text-[#f0e8d8] shadow-sm'
+                  : 'text-[#4a2810]/70 hover:text-[#4a2810]'
               }`}
             >
-              All Projects ({PORTFOLIO_CONFIG.projects.length})
+              All Works ({PORTFOLIO_CONFIG.projects.length})
             </button>
             <button
               type="button"
               role="tab"
               aria-selected={currentDomain === 'sde'}
               onClick={() => onSelectDomain('sde')}
-              className={`px-4 py-2 text-xs font-semibold rounded-lg transition-all flex items-center gap-1.5 ${
+              className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 ${
                 currentDomain === 'sde'
-                  ? 'bg-[#2563EB] text-white shadow'
-                  : 'text-[#94A3B8] hover:text-white'
+                  ? 'bg-[#4a2810] text-[#f0e8d8] shadow-sm'
+                  : 'text-[#4a2810]/70 hover:text-[#4a2810]'
               }`}
             >
               <Terminal className="w-3.5 h-3.5" />
@@ -73,10 +84,10 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ currentDomain,
               role="tab"
               aria-selected={currentDomain === 'ai-ml'}
               onClick={() => onSelectDomain('ai-ml')}
-              className={`px-4 py-2 text-xs font-semibold rounded-lg transition-all flex items-center gap-1.5 ${
+              className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 ${
                 currentDomain === 'ai-ml'
-                  ? 'bg-[#22D3EE] text-[#05070D] shadow'
-                  : 'text-[#94A3B8] hover:text-white'
+                  ? 'bg-[#a8c4e8] text-[#4a2810] shadow-sm'
+                  : 'text-[#4a2810]/70 hover:text-[#4a2810]'
               }`}
             >
               <Brain className="w-3.5 h-3.5" />
@@ -85,119 +96,92 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ currentDomain,
           </div>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {filteredProjects.map((project) => {
-            const isAi = project.domain === 'ai-ml';
-            const isBoth = project.domain === 'both';
+        {/* 2-Column Grid of Editorial Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
+          {filteredProjects.map((project, idx) => {
+            const projectNumber = String(idx + 1).padStart(2, '0');
 
             return (
               <div
                 key={project.id}
-                className={`group relative rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 ${
-                  isBoth
-                    ? 'glass-panel-glow border-blue-500/40 hover:border-[#22D3EE]'
-                    : isAi
-                    ? 'glass-panel hover:border-[#22D3EE]/50 hover:shadow-[0_10px_35px_rgba(34,211,238,0.2)]'
-                    : 'glass-panel hover:border-[#3B82F6]/50 hover:shadow-[0_10px_35px_rgba(37,99,235,0.2)]'
-                }`}
+                onClick={() => setSelectedProject(project)}
+                className="editorial-card cursor-pointer group flex flex-col justify-between overflow-hidden shadow-sm"
               >
                 <div>
-                  {/* Top Badge & Metric */}
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
-                    <span
-                      className={`px-3 py-1 text-xs font-mono font-semibold rounded-full border ${
-                        isAi
-                          ? 'bg-[#22D3EE]/15 text-[#22D3EE] border-[#22D3EE]/30'
-                          : isBoth
-                          ? 'bg-gradient-to-r from-[#2563EB]/25 to-[#22D3EE]/25 text-white border-blue-400/30'
-                          : 'bg-[#2563EB]/15 text-[#60A5FA] border-[#2563EB]/30'
-                      }`}
-                    >
-                      {project.categoryBadge}
+                  {/* Thumbnail Banner with Ghost Numeral & Badge */}
+                  <div className="relative h-36 bg-[#faf6f0] border-b border-[#4a2810]/10 p-5 flex items-center justify-between overflow-hidden">
+                    {/* Ghost Number in Archivo Black */}
+                    <span className="font-archivo text-7xl text-[#4a2810]/10 select-none pointer-events-none group-hover:text-white/10 transition-colors">
+                      {projectNumber}
                     </span>
 
-                    {project.highlightMetrics && (
-                      <span className="text-[11px] font-mono text-[#94A3B8] bg-[#05070D]/80 px-2.5 py-1 rounded-md border border-blue-950">
-                        {project.highlightMetrics}
-                      </span>
-                    )}
+                    {/* Centered Graphic Icon */}
+                    <div className="p-3 rounded-2xl bg-white/70 group-hover:bg-white/10 border border-[#4a2810]/10 group-hover:border-white/15 transition-colors">
+                      {getDomainIcon(project.domain)}
+                    </div>
+
+                    {/* Category Badge */}
+                    <span className="card-tag absolute bottom-3 right-3 px-3 py-1 rounded-full text-[10px] font-mono font-bold tracking-wider uppercase bg-[#4a2810] text-[#f0e8d8] transition-colors shadow-sm">
+                      {project.categoryBadge}
+                    </span>
                   </div>
 
-                  {/* Title & Subtitle */}
-                  <h3 className="text-2xl font-bold text-[#F8FAFC] group-hover:text-[#22D3EE] transition-colors mb-1">
-                    {project.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm font-medium text-[#38BDF8] mb-4">
-                    {project.subtitle}
-                  </p>
+                  {/* Body Content */}
+                  <div className="p-6">
+                    <span className="text-[10px] font-mono uppercase tracking-[2px] text-[#8b5a2a] block mb-1 font-bold">
+                      {project.domain === 'both' ? 'SDE + AI/ML Pipeline' : project.domain === 'sde' ? 'Distributed Systems' : 'Generative AI & LLM'}
+                    </span>
 
-                  {/* Description */}
-                  <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed mb-6">
-                    {project.description}
-                  </p>
+                    <h3 className="font-archivo text-xl sm:text-2xl text-[#4a2810] group-hover:text-white transition-colors tracking-tight mb-1">
+                      {project.title}
+                    </h3>
 
-                  {/* Highlights / Architecture peek */}
-                  {project.architecture && (
-                    <div className="mb-6 p-3 rounded-xl bg-[#05070D]/70 border border-blue-950 text-xs font-mono">
-                      <div className="text-[10px] uppercase text-[#60A5FA] mb-1 font-semibold flex items-center gap-1.5">
-                        <Activity className="w-3 h-3 text-[#22D3EE]" />
-                        <span>Core Pipeline Snapshot:</span>
-                      </div>
-                      <div className="text-[#CBD5E1] truncate">
-                        {project.architecture.map((a) => a.step).join(' → ')}
-                      </div>
+                    <p className="card-subtitle text-xs sm:text-sm font-semibold text-[#8b5a2a] mb-3">
+                      {project.subtitle}
+                    </p>
+
+                    <p className="card-desc text-xs text-[#4a2810]/80 leading-relaxed mb-4 line-clamp-3">
+                      {project.description}
+                    </p>
+
+                    {/* Tech Stack Pills */}
+                    <div className="flex flex-wrap gap-1.5 mb-2">
+                      {project.techStack.slice(0, 5).map((tech) => (
+                        <span
+                          key={tech}
+                          className="card-tech px-2.5 py-0.5 text-[11px] font-mono rounded-md bg-[#faf6f0] text-[#4a2810] border border-[#4a2810]/10"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                      {project.techStack.length > 5 && (
+                        <span className="card-tech px-2 py-0.5 text-[11px] font-mono rounded-md bg-[#faf6f0] text-[#4a2810]/60 border border-[#4a2810]/10">
+                          +{project.techStack.length - 5}
+                        </span>
+                      )}
                     </div>
-                  )}
-
-                  {/* Tech stack */}
-                  <div className="flex flex-wrap gap-1.5 mb-6">
-                    {project.techStack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2.5 py-1 text-[11px] font-mono rounded-lg bg-[#0B1930] text-[#93C5FD] border border-blue-900/40"
-                      >
-                        {tech}
-                      </span>
-                    ))}
                   </div>
                 </div>
 
-                {/* Card Actions */}
-                <div className="pt-4 border-t border-blue-900/40 flex flex-wrap items-center justify-between gap-3">
-                  <button
-                    type="button"
-                    onClick={() => setSelectedProject(project)}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0B1930] hover:bg-[#2563EB]/20 border border-blue-900/60 hover:border-[#22D3EE] text-xs font-semibold font-mono text-[#F8FAFC] transition-all group/btn"
-                  >
+                {/* Footer Action */}
+                <div className="px-6 py-4 border-t border-[#4a2810]/10 flex items-center justify-between text-xs font-bold uppercase tracking-wider">
+                  <div className="flex items-center gap-1.5 text-[#4a2810] group-hover:text-[#a8c4e8] transition-colors">
                     <span>Inspect Architecture</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-[#22D3EE] group-hover/btn:translate-x-1 transition-transform" />
-                  </button>
-
-                  <div className="flex items-center gap-2">
-                    {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2 rounded-xl bg-[#080F1F] hover:bg-[#0B1930] text-[#94A3B8] hover:text-[#F8FAFC] border border-blue-900/50 hover:border-[#3B82F6] transition-all"
-                        aria-label={`View ${project.title} on GitHub (opens in new tab)`}
-                      >
-                        <GithubIcon className="w-4 h-4" />
-                      </a>
-                    )}
-                    {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2 rounded-xl bg-[#080F1F] hover:bg-[#0B1930] text-[#94A3B8] hover:text-[#22D3EE] border border-blue-900/50 hover:border-[#22D3EE] transition-all"
-                        aria-label={`Open ${project.title} live demonstration (opens in new tab)`}
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                      </a>
-                    )}
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
+
+                  {project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="card-icon-btn p-2 rounded-full bg-[#f5f0e4] text-[#4a2810] hover:bg-[#a8c4e8] transition-colors"
+                      aria-label="View on GitHub"
+                    >
+                      <GithubIcon className="w-3.5 h-3.5" />
+                    </a>
+                  )}
                 </div>
               </div>
             );

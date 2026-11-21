@@ -3,16 +3,15 @@ import { PORTFOLIO_CONFIG } from '../data/portfolioData';
 import { GithubIcon, LinkedinIcon } from './BrandIcons';
 import confetti from 'canvas-confetti';
 import {
-  Mail,
   Copy,
   Check,
   Send,
   Code2,
   Terminal,
   Sparkles,
-  FileDown,
   MessageSquare,
   AlertCircle,
+  Phone,
 } from 'lucide-react';
 
 export const ContactSection: React.FC = () => {
@@ -34,7 +33,7 @@ export const ContactSection: React.FC = () => {
         particleCount: 40,
         spread: 60,
         origin: { y: 0.8 },
-        colors: ['#2563EB', '#3B82F6', '#22D3EE'],
+        colors: ['#4a2810', '#6b3a1a', '#a8c4e8'],
       });
     } catch {
       // safe fallback
@@ -58,7 +57,6 @@ export const ContactSection: React.FC = () => {
     setErrorMsg('');
     setReadyToLaunchMail(true);
 
-    // Direct, honest mailto trigger: no fake mock server success!
     const subject = encodeURIComponent(`[Portfolio Inquiry - ${formData.domain}] From ${formData.name}`);
     const body = encodeURIComponent(
       `Hello Shiva,\n\nName: ${formData.name}\nEmail: ${formData.email}\nDomain Interest: ${formData.domain}\n\nMessage:\n${formData.message}\n`
@@ -67,192 +65,204 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="relative py-20 border-t border-blue-900/30">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0B1930] border border-blue-500/30 text-xs font-mono text-[#22D3EE] mb-3">
-            <Mail className="w-3.5 h-3.5" />
-            <span>COMMUNICATION & OPPORTUNITIES</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#F8FAFC] tracking-tight">
-            Initiate Contact
+    <section id="contact" className="relative">
+      
+      {/* SHRINITHI-STYLE "LET'S BUILD" BANNER */}
+      <div className="bg-[#6b3a1a] py-16 px-4 sm:px-8 text-center relative overflow-hidden text-[#f0e8d8] border-b border-[#4a2810]/20">
+        <span
+          className="font-archivo absolute -bottom-6 left-1/2 -translate-x-1/2 text-7xl sm:text-9xl text-white/5 select-none pointer-events-none whitespace-nowrap uppercase"
+          aria-hidden="true"
+        >
+          Let's Build Together
+        </span>
+
+        <div className="relative z-10 max-w-2xl mx-auto">
+          <span className="text-[10px] font-mono uppercase tracking-[2px] text-[#a8c4e8] font-bold block mb-2">
+            AVAILABLE FOR FULL-TIME SDE & AI/ML ROLES
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-archivo uppercase text-white mb-4 tracking-tight">
+            Have a Problem to Solve? Let's Talk.
           </h2>
-          <p className="mt-2 text-sm text-[#94A3B8]">
-            Looking for a Software Development Engineer or an AI/ML Engineer? Let's discuss backend architectures, scalable systems, and intelligent machine learning applications.
+          <p className="text-xs sm:text-sm text-[#f0e8d8]/85 mb-6 leading-relaxed">
+            Whether you need a backend engineer who understands distributed queues and database locking, or an AI engineer who evaluates LLMs beyond shallow prompts—I am ready to contribute.
           </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <a
+              href={`mailto:${PORTFOLIO_CONFIG.socials.email}?subject=Opportunity%20Inquiry%20-%20Shiva%20Kumar`}
+              className="btn-sky px-7 py-3 text-xs shadow-md"
+            >
+              Get in Touch →
+            </a>
+            <a
+              href={PORTFOLIO_CONFIG.socials.resumeUrl}
+              download="Shiva_Kumar_Resume.pdf"
+              className="btn-brown px-7 py-3 text-xs shadow-md border border-white/20"
+            >
+              Download Resume (PDF)
+            </a>
+          </div>
         </div>
+      </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-6xl mx-auto items-start">
-          {/* Left Column: Direct Contact & Social Channels */}
-          <div className="lg:col-span-5 space-y-6">
-            {/* Quick Email Card */}
-            <div className="glass-panel-glow rounded-3xl p-6 sm:p-7">
-              <span className="text-[10px] font-mono uppercase text-[#22D3EE] tracking-widest block mb-2">
-                Primary Direct Channel
+      {/* 2-COLUMN CONTACT DISPATCH SECTION */}
+      <div className="bg-[#f5f0e4] py-20 px-4 sm:px-6 lg:px-8 border-b border-[#4a2810]/10">
+        <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          
+          {/* Left Column: Direct channels */}
+          <div className="lg:col-span-5 space-y-5">
+            <div>
+              <span className="text-[10px] font-mono uppercase tracking-[2px] text-[#8b5a2a] block mb-1 font-bold">
+                COMMUNICATION
               </span>
-              <h3 className="text-xl font-bold text-[#F8FAFC] mb-2">
-                Email Dispatch
+              <h3 className="text-2xl sm:text-3xl font-archivo uppercase text-[#4a2810] tracking-tight">
+                Direct Channels
               </h3>
-              <p className="text-xs text-[#94A3B8] leading-relaxed mb-5">
-                Send an email directly or copy the address to your clipboard. All messages land directly in my inbox.
+              <p className="text-xs text-[#4a2810]/80 mt-1">
+                Reach out directly via email, connect on LinkedIn, or inspect my repositories on GitHub.
               </p>
+            </div>
 
-              <div className="p-3 rounded-2xl bg-[#05070D] border border-blue-900/60 flex items-center justify-between gap-3 mb-4">
-                <div className="flex items-center gap-2 text-xs font-mono text-[#CBD5E1] truncate">
-                  <Mail className="w-4 h-4 text-[#3B82F6] shrink-0" />
-                  <span className="truncate">{PORTFOLIO_CONFIG.socials.email}</span>
-                </div>
+            {/* Email Box */}
+            <div className="bg-white p-5 rounded-2xl border-2 border-[#4a2810]/12 shadow-sm">
+              <span className="text-[10px] font-mono uppercase text-[#8b5a2a] font-bold block mb-1">
+                Direct Email
+              </span>
+              <div className="flex items-center justify-between gap-3">
+                <span className="text-xs font-mono font-bold text-[#4a2810] truncate">
+                  {PORTFOLIO_CONFIG.socials.email}
+                </span>
                 <button
                   type="button"
                   onClick={copyEmail}
-                  className="px-3 py-1.5 rounded-xl bg-[#0B1930] hover:bg-[#2563EB]/30 text-xs font-mono text-[#22D3EE] border border-blue-900/60 hover:border-[#22D3EE] transition-all flex items-center gap-1.5 shrink-0"
-                  aria-label="Copy Shiva's email to clipboard"
+                  className="px-3 py-1 rounded-full bg-[#f5f0e4] hover:bg-[#a8c4e8] text-[11px] font-mono font-bold text-[#4a2810] transition-colors flex items-center gap-1 shrink-0"
                 >
                   {copied ? (
                     <>
-                      <Check className="w-3.5 h-3.5 text-emerald-400" />
-                      <span className="text-emerald-400">Copied!</span>
+                      <Check className="w-3 h-3 text-emerald-800" />
+                      <span>Copied!</span>
                     </>
                   ) : (
                     <>
-                      <Copy className="w-3.5 h-3.5" />
+                      <Copy className="w-3 h-3" />
                       <span>Copy</span>
                     </>
                   )}
                 </button>
               </div>
 
-              <div className="flex flex-col gap-2">
-                <a
-                  href={`mailto:${PORTFOLIO_CONFIG.socials.email}?subject=Opportunity%20Inquiry%20-%20Shiva%20Kumar`}
-                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-gradient-to-r from-[#2563EB] to-[#3B82F6] text-white text-xs font-semibold font-mono shadow-[0_0_15px_rgba(37,99,235,0.4)] transition-all"
-                >
-                  <Send className="w-3.5 h-3.5" />
-                  <span>Launch Mail App</span>
-                </a>
-
-                <a
-                  href={PORTFOLIO_CONFIG.socials.resumeUrl}
-                  download="Shiva_Kumar_Resume.pdf"
-                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-[#0B1930] hover:bg-[#2563EB]/20 text-[#22D3EE] text-xs font-semibold font-mono border border-[#22D3EE]/30 hover:border-[#22D3EE] transition-all"
-                >
-                  <FileDown className="w-3.5 h-3.5" />
-                  <span>Download Verified Resume (PDF)</span>
+              <div className="mt-3 pt-3 border-t border-[#4a2810]/10 flex items-center gap-2 text-xs font-mono text-[#8b5a2a]">
+                <Phone className="w-3.5 h-3.5 text-[#4a2810]" />
+                <a href={`tel:${PORTFOLIO_CONFIG.socials.phone}`} className="hover:text-[#4a2810]">
+                  {PORTFOLIO_CONFIG.socials.phone}
                 </a>
               </div>
             </div>
 
             {/* Social Links List */}
-            <div className="glass-panel rounded-3xl p-6">
-              <h4 className="text-xs font-mono uppercase text-[#94A3B8] tracking-wider mb-4">
-                Verified Online Presence
-              </h4>
+            <div className="space-y-2">
+              <a
+                href={PORTFOLIO_CONFIG.socials.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between p-3.5 rounded-xl bg-white hover:bg-[#faf6f0] border border-[#4a2810]/12 transition-all group"
+              >
+                <div className="flex items-center gap-2.5 text-xs font-bold text-[#4a2810]">
+                  <GithubIcon className="w-4 h-4" />
+                  <span>GitHub Profile</span>
+                </div>
+                <span className="text-[11px] font-mono text-[#8b5a2a] group-hover:text-[#4a2810]">
+                  @shiva-kumar-1319 ↗
+                </span>
+              </a>
 
-              <div className="space-y-2.5 font-mono text-xs">
-                <a
-                  href={PORTFOLIO_CONFIG.socials.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between p-3 rounded-xl bg-[#080F1F] hover:bg-[#0B1930] border border-blue-950 hover:border-[#3B82F6] transition-all group"
-                >
-                  <div className="flex items-center gap-3 text-[#F8FAFC]">
-                    <GithubIcon className="w-4 h-4 text-[#3B82F6]" />
-                    <span>GitHub</span>
-                  </div>
-                  <span className="text-[#94A3B8] group-hover:text-[#22D3EE] text-[11px]">
-                    shiva-kumar-1319 ↗
-                  </span>
-                </a>
+              <a
+                href={PORTFOLIO_CONFIG.socials.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between p-3.5 rounded-xl bg-white hover:bg-[#faf6f0] border border-[#4a2810]/12 transition-all group"
+              >
+                <div className="flex items-center gap-2.5 text-xs font-bold text-[#4a2810]">
+                  <LinkedinIcon className="w-4 h-4 text-[#3B82F6]" />
+                  <span>LinkedIn Profile</span>
+                </div>
+                <span className="text-[11px] font-mono text-[#8b5a2a] group-hover:text-[#4a2810]">
+                  shiva-kumar-kavali ↗
+                </span>
+              </a>
 
-                <a
-                  href={PORTFOLIO_CONFIG.socials.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between p-3 rounded-xl bg-[#080F1F] hover:bg-[#0B1930] border border-blue-950 hover:border-[#3B82F6] transition-all group"
-                >
-                  <div className="flex items-center gap-3 text-[#F8FAFC]">
-                    <LinkedinIcon className="w-4 h-4 text-[#3B82F6]" />
-                    <span>LinkedIn</span>
-                  </div>
-                  <span className="text-[#94A3B8] group-hover:text-[#22D3EE] text-[11px]">
-                    shiva-kumar-kavali ↗
-                  </span>
-                </a>
+              <a
+                href={PORTFOLIO_CONFIG.socials.leetcode}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between p-3.5 rounded-xl bg-white hover:bg-[#faf6f0] border border-[#4a2810]/12 transition-all group"
+              >
+                <div className="flex items-center gap-2.5 text-xs font-bold text-[#4a2810]">
+                  <Code2 className="w-4 h-4 text-[#FFA116]" />
+                  <span>LeetCode Profile</span>
+                </div>
+                <span className="text-[11px] font-mono font-bold text-[#FFA116]">
+                  500+ Solved ↗
+                </span>
+              </a>
 
-                <a
-                  href={PORTFOLIO_CONFIG.socials.leetcode}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between p-3 rounded-xl bg-[#080F1F] hover:bg-[#0B1930] border border-blue-950 hover:border-[#FFA116] transition-all group"
-                >
-                  <div className="flex items-center gap-3 text-[#F8FAFC]">
-                    <Code2 className="w-4 h-4 text-[#FFA116]" />
-                    <span>LeetCode</span>
-                  </div>
-                  <span className="text-[#94A3B8] group-hover:text-[#FFA116] text-[11px]">
-                    shivakumarnaidu ↗
-                  </span>
-                </a>
+              <a
+                href={PORTFOLIO_CONFIG.socials.codeforces}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between p-3.5 rounded-xl bg-white hover:bg-[#faf6f0] border border-[#4a2810]/12 transition-all group"
+              >
+                <div className="flex items-center gap-2.5 text-xs font-bold text-[#4a2810]">
+                  <Terminal className="w-4 h-4 text-[#1890FF]" />
+                  <span>Codeforces Profile</span>
+                </div>
+                <span className="text-[11px] font-mono font-bold text-[#1890FF]">
+                  1200+ Rating ↗
+                </span>
+              </a>
 
-                <a
-                  href={PORTFOLIO_CONFIG.socials.codeforces}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between p-3 rounded-xl bg-[#080F1F] hover:bg-[#0B1930] border border-blue-950 hover:border-[#3B82F6] transition-all group"
-                >
-                  <div className="flex items-center gap-3 text-[#F8FAFC]">
-                    <Terminal className="w-4 h-4 text-[#3B82F6]" />
-                    <span>Codeforces</span>
-                  </div>
-                  <span className="text-[#94A3B8] group-hover:text-[#60A5FA] text-[11px]">
-                    Kavali_Shiva_Kumar_Naidu ↗
-                  </span>
-                </a>
-
-                <a
-                  href={PORTFOLIO_CONFIG.socials.codechef}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between p-3 rounded-xl bg-[#080F1F] hover:bg-[#0B1930] border border-blue-950 hover:border-[#F97316] transition-all group"
-                >
-                  <div className="flex items-center gap-3 text-[#F8FAFC]">
-                    <Sparkles className="w-4 h-4 text-[#F97316]" />
-                    <span>CodeChef</span>
-                  </div>
-                  <span className="text-[#94A3B8] group-hover:text-[#F97316] text-[11px]">
-                    shivakumar1319 ↗
-                  </span>
-                </a>
-              </div>
+              <a
+                href={PORTFOLIO_CONFIG.socials.codechef}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between p-3.5 rounded-xl bg-white hover:bg-[#faf6f0] border border-[#4a2810]/12 transition-all group"
+              >
+                <div className="flex items-center gap-2.5 text-xs font-bold text-[#4a2810]">
+                  <Sparkles className="w-4 h-4 text-[#F97316]" />
+                  <span>CodeChef Profile</span>
+                </div>
+                <span className="text-[11px] font-mono font-bold text-[#F97316]">
+                  3-Star Rated ↗
+                </span>
+              </a>
             </div>
           </div>
 
-          {/* Right Column: Contact Inquiry Composer with Validation */}
+          {/* Right Column: Contact Message Form */}
           <div className="lg:col-span-7">
-            <div className="glass-panel rounded-3xl p-6 sm:p-8">
+            <div className="bg-white p-6 sm:p-8 rounded-3xl border-2 border-[#4a2810]/12 shadow-sm">
               <div className="flex items-center gap-2 mb-2">
-                <MessageSquare className="w-5 h-5 text-[#22D3EE]" />
-                <h3 className="text-xl font-bold text-[#F8FAFC]">
+                <MessageSquare className="w-5 h-5 text-[#4a2810]" />
+                <h3 className="text-xl font-archivo uppercase text-[#4a2810]">
                   Direct Message Composer
                 </h3>
               </div>
-              <p className="text-xs sm:text-sm text-[#94A3B8] mb-6">
-                Fill out this form to prepare a formatted direct email dispatched via your default email client. No fabricated server confirmations.
+              <p className="text-xs text-[#8b5a2a] mb-6">
+                This form prepares a direct formatted dispatch via your default mail client.
               </p>
 
               {errorMsg && (
-                <div className="mb-4 p-3 rounded-xl bg-red-950/40 border border-red-800/50 flex items-center gap-2 text-xs text-red-300">
-                  <AlertCircle className="w-4 h-4 shrink-0" />
+                <div className="mb-4 p-3 rounded-xl bg-red-50 border border-red-200 flex items-center gap-2 text-xs text-red-800">
+                  <AlertCircle className="w-4 h-4 shrink-0 text-red-600" />
                   <span>{errorMsg}</span>
                 </div>
               )}
 
               {readyToLaunchMail && (
-                <div className="mb-4 p-3 rounded-xl bg-emerald-950/40 border border-emerald-800/50 flex items-center gap-2 text-xs text-emerald-300">
-                  <Check className="w-4 h-4 shrink-0" />
+                <div className="mb-4 p-3 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center gap-2 text-xs text-emerald-800">
+                  <Check className="w-4 h-4 shrink-0 text-emerald-600" />
                   <span>
-                    Mail client triggered! If it didn't open automatically, you can also reach me directly at <strong>{PORTFOLIO_CONFIG.socials.email}</strong>.
+                    Mail client triggered! You can also reach me directly at <strong>{PORTFOLIO_CONFIG.socials.email}</strong>.
                   </span>
                 </div>
               )}
@@ -262,7 +272,7 @@ export const ContactSection: React.FC = () => {
                   <div>
                     <label
                       htmlFor="contact-name"
-                      className="block text-xs font-mono uppercase text-[#94A3B8] mb-1.5"
+                      className="block text-[11px] font-mono uppercase font-bold text-[#8b5a2a] mb-1.5"
                     >
                       Your Name *
                     </label>
@@ -273,14 +283,14 @@ export const ContactSection: React.FC = () => {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="e.g. Alex Morgan"
-                      className="w-full px-4 py-2.5 text-xs font-mono bg-[#05070D] border border-blue-900/60 rounded-xl text-[#F8FAFC] placeholder-[#94A3B8] focus:border-[#22D3EE] focus:ring-1 focus:ring-[#22D3EE] outline-none transition-all"
+                      className="w-full px-4 py-2.5 text-xs bg-[#faf6f0] border border-[#4a2810]/15 rounded-xl text-[#4a2810] placeholder-[#8b5a2a]/60 focus:border-[#4a2810] focus:ring-1 focus:ring-[#4a2810] outline-none transition-all"
                     />
                   </div>
 
                   <div>
                     <label
                       htmlFor="contact-email"
-                      className="block text-xs font-mono uppercase text-[#94A3B8] mb-1.5"
+                      className="block text-[11px] font-mono uppercase font-bold text-[#8b5a2a] mb-1.5"
                     >
                       Your Email *
                     </label>
@@ -291,7 +301,7 @@ export const ContactSection: React.FC = () => {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="e.g. alex@company.com"
-                      className="w-full px-4 py-2.5 text-xs font-mono bg-[#05070D] border border-blue-900/60 rounded-xl text-[#F8FAFC] placeholder-[#94A3B8] focus:border-[#22D3EE] focus:ring-1 focus:ring-[#22D3EE] outline-none transition-all"
+                      className="w-full px-4 py-2.5 text-xs bg-[#faf6f0] border border-[#4a2810]/15 rounded-xl text-[#4a2810] placeholder-[#8b5a2a]/60 focus:border-[#4a2810] focus:ring-1 focus:ring-[#4a2810] outline-none transition-all"
                     />
                   </div>
                 </div>
@@ -299,50 +309,50 @@ export const ContactSection: React.FC = () => {
                 <div>
                   <label
                     htmlFor="contact-domain"
-                    className="block text-xs font-mono uppercase text-[#94A3B8] mb-1.5"
+                    className="block text-[11px] font-mono uppercase font-bold text-[#8b5a2a] mb-1.5"
                   >
-                    Role Domain Focus
+                    Opportunity Domain Focus
                   </label>
                   <select
                     id="contact-domain"
                     value={formData.domain}
                     onChange={(e) => setFormData({ ...formData, domain: e.target.value })}
-                    className="w-full px-4 py-2.5 text-xs font-mono bg-[#05070D] border border-blue-900/60 rounded-xl text-[#F8FAFC] focus:border-[#22D3EE] focus:ring-1 focus:ring-[#22D3EE] outline-none transition-all"
+                    className="w-full px-4 py-2.5 text-xs bg-[#faf6f0] border border-[#4a2810]/15 rounded-xl text-[#4a2810] focus:border-[#4a2810] focus:ring-1 focus:ring-[#4a2810] outline-none transition-all font-semibold"
                   >
                     <option value="Both SDE & AI/ML">Dual-Role: Both SDE & AI/ML</option>
                     <option value="Software Development Engineer (SDE)">Software Development Engineer (SDE)</option>
                     <option value="AI & Machine Learning Engineer (AI/ML)">AI & Machine Learning Engineer (AI/ML)</option>
                     <option value="Distributed Systems / Backend">Distributed Systems / Backend</option>
-                    <option value="LLM / Generative AI / RAG">LLM / Generative AI / RAG</option>
+                    <option value="Generative AI & LLMs">Generative AI & LLMs</option>
                   </select>
                 </div>
 
                 <div>
                   <label
                     htmlFor="contact-message"
-                    className="block text-xs font-mono uppercase text-[#94A3B8] mb-1.5"
+                    className="block text-[11px] font-mono uppercase font-bold text-[#8b5a2a] mb-1.5"
                   >
                     Message / Opportunity Details *
                   </label>
                   <textarea
                     id="contact-message"
                     required
-                    rows={5}
+                    rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Describe your team, project requirements, or open roles..."
-                    className="w-full px-4 py-3 text-xs font-mono bg-[#05070D] border border-blue-900/60 rounded-xl text-[#F8FAFC] placeholder-[#94A3B8] focus:border-[#22D3EE] focus:ring-1 focus:ring-[#22D3EE] outline-none transition-all resize-none"
+                    placeholder="Describe your project, team requirements, or open roles..."
+                    className="w-full px-4 py-3 text-xs bg-[#faf6f0] border border-[#4a2810]/15 rounded-xl text-[#4a2810] placeholder-[#8b5a2a]/60 focus:border-[#4a2810] focus:ring-1 focus:ring-[#4a2810] outline-none transition-all resize-none"
                   />
                 </div>
 
                 <div className="pt-2 flex flex-wrap items-center justify-between gap-3">
-                  <span className="text-[11px] font-mono text-[#94A3B8]">
-                    Opens directly in your mail provider with pre-filled details.
+                  <span className="text-[11px] font-mono text-[#8b5a2a]">
+                    Dispatches directly via your default email client.
                   </span>
 
                   <button
                     type="submit"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#2563EB] to-[#22D3EE] hover:from-[#1D4ED8] hover:to-[#06B6D4] text-[#05070D] font-bold text-xs font-mono shadow-[0_0_20px_rgba(34,211,238,0.3)] transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+                    className="btn-brown px-7 py-3 text-xs shadow-md flex items-center gap-2 hover:scale-[1.01]"
                   >
                     <Send className="w-3.5 h-3.5" />
                     <span>Send Message (mailto)</span>

@@ -9,21 +9,16 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="relative border-t border-blue-900/40 bg-[#05070D] py-12">
+    <footer className="relative bg-[#f5f0e4] border-t border-[#4a2810]/15 py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-blue-950">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-[#4a2810]/10">
           {/* Left Brand */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <div className="flex items-center gap-2 mb-1">
-              <span className="font-mono text-base font-bold text-[#F8FAFC]">
-                {PORTFOLIO_CONFIG.personal.name}
-              </span>
-              <span className="text-xs font-mono text-[#22D3EE] px-2 py-0.5 rounded bg-[#0B1930] border border-blue-900">
-                SDE • AI/ML
-              </span>
-            </div>
-            <p className="text-xs text-[#94A3B8]">
-              {PORTFOLIO_CONFIG.personal.tagline}
+            <span className="font-signature text-3xl font-bold text-[#4a2810] mb-1">
+              {PORTFOLIO_CONFIG.personal.name}
+            </span>
+            <p className="text-xs text-[#8b5a2a] max-w-md">
+              Software Development Engineer (SDE) & Artificial Intelligence / Machine Learning Engineer (AI/ML).
             </p>
           </div>
 
@@ -33,7 +28,7 @@ export const Footer: React.FC = () => {
               href={PORTFOLIO_CONFIG.socials.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2.5 rounded-xl bg-[#080F1F] hover:bg-[#0B1930] text-[#94A3B8] hover:text-[#22D3EE] border border-blue-950 hover:border-[#3B82F6] transition-all"
+              className="p-2.5 rounded-full bg-white hover:bg-[#4a2810] text-[#4a2810] hover:text-[#f0e8d8] border border-[#4a2810]/15 transition-all shadow-sm"
               aria-label="GitHub Profile (opens in new tab)"
             >
               <GithubIcon className="w-4 h-4" />
@@ -42,7 +37,7 @@ export const Footer: React.FC = () => {
               href={PORTFOLIO_CONFIG.socials.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2.5 rounded-xl bg-[#080F1F] hover:bg-[#0B1930] text-[#94A3B8] hover:text-[#22D3EE] border border-blue-950 hover:border-[#3B82F6] transition-all"
+              className="p-2.5 rounded-full bg-white hover:bg-[#a8c4e8] text-[#4a2810] border border-[#4a2810]/15 transition-all shadow-sm"
               aria-label="LinkedIn Profile (opens in new tab)"
             >
               <LinkedinIcon className="w-4 h-4" />
@@ -50,24 +45,24 @@ export const Footer: React.FC = () => {
             <button
               type="button"
               onClick={scrollToTop}
-              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#0B1930] hover:bg-[#2563EB]/20 text-[#22D3EE] border border-blue-900/60 hover:border-[#22D3EE] text-xs font-mono transition-all group"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#4a2810] text-[#f0e8d8] hover:bg-[#6b3a1a] text-xs font-mono font-bold tracking-wider uppercase transition-all shadow-sm"
               aria-label="Scroll back to top of page"
             >
               <span>Back to Top</span>
-              <ArrowUp className="w-3.5 h-3.5 group-hover:-translate-y-0.5 transition-transform" />
+              <ArrowUp className="w-3.5 h-3.5" />
             </button>
           </div>
         </div>
 
         {/* Bottom Credits & Status */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#94A3B8]">
-          <div className="flex items-center gap-2">
-            <span>© {new Date().getFullYear()} Shiva Kumar. All rights reserved.</span>
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#8b5a2a]">
+          <div>
+            <span>© {new Date().getFullYear()} Shiva Kumar Kavali. All rights reserved.</span>
           </div>
 
-          <div className="flex items-center gap-2">
-            <span className="flex h-2 w-2 rounded-full bg-[#22D3EE]"></span>
-            <span>Built with React, TypeScript, Tailwind CSS & Framer Motion</span>
+          <div className="flex items-center gap-2 font-semibold">
+            <span className="flex h-2 w-2 rounded-full bg-emerald-700"></span>
+            <span>Available for SDE & AI/ML opportunities</span>
           </div>
         </div>
       </div>

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import type { DomainType } from './data/portfolioData';
 import { ScrollProgressBar } from './components/ScrollProgressBar';
-import { InteractiveBackground } from './components/InteractiveBackground';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
-import { DomainShowcase } from './components/DomainShowcase';
-import { SkillsSection } from './components/SkillsSection';
+import { PhilosophySection } from './components/PhilosophySection';
 import { ProjectsSection } from './components/ProjectsSection';
+import { DualArchitectureGraphic } from './components/DualArchitectureGraphic';
 import { ExperienceAchievements } from './components/ExperienceAchievements';
+import { SkillsSection } from './components/SkillsSection';
 import { CompetitiveProgramming } from './components/CompetitiveProgramming';
 import { EducationSection } from './components/EducationSection';
 import { ContactSection } from './components/ContactSection';
@@ -21,14 +21,11 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#05070D] text-[#F8FAFC] selection:bg-[#2563EB]/40 selection:text-[#22D3EE]">
+    <div className="relative min-h-screen bg-[#f5f0e4] text-[#4a2810] selection:bg-[#a8c4e8] selection:text-[#4a2810]">
       {/* Scroll Progress Bar */}
       <ScrollProgressBar />
 
-      {/* Interactive Cyber Particle / Neural Mesh Background */}
-      <InteractiveBackground currentDomain={currentDomain} />
-
-      {/* Navigation Header */}
+      {/* Navigation Header with Marquee Ticker */}
       <Navbar
         currentDomain={currentDomain}
         onDomainChange={handleDomainChange}
@@ -36,42 +33,49 @@ export const App: React.FC = () => {
 
       {/* Main Landmark for Accessibility */}
       <main id="main-content" className="relative z-10">
-        {/* 1. Hero Section */}
+        {/* 1. Hero Section: Photo with Resume, Mail, LeetCode, GitHub */}
         <HeroSection
           currentDomain={currentDomain}
           onSelectDomain={handleDomainChange}
         />
 
-        {/* 2. Dual-Domain Showcase & Interactive Selector */}
-        <DomainShowcase
-          currentDomain={currentDomain}
-          onSelectDomain={handleDomainChange}
-        />
+        {/* 2. Engineering Philosophy & Reality Check (User's Principles) */}
+        <PhilosophySection />
 
-        {/* 3. Skills Section */}
-        <SkillsSection
-          currentDomain={currentDomain}
-          onSelectDomain={handleDomainChange}
-        />
-
-        {/* 4. Featured Projects Section */}
+        {/* 3. Featured Projects Showcase with Dual-Domain Filter */}
         <ProjectsSection
           currentDomain={currentDomain}
           onSelectDomain={handleDomainChange}
         />
 
-        {/* 5. Experience and Achievements */}
+        {/* 4. Production Process & Architecture Simulator */}
+        <section className="py-16 bg-[#ffffff] border-b border-[#4a2810]/10">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <DualArchitectureGraphic
+              currentDomain={currentDomain}
+              onSelectDomain={handleDomainChange}
+            />
+          </div>
+        </section>
+
+        {/* 5. Work Experience, Verified Achievements & Certifications */}
         <ExperienceAchievements
           currentDomain={currentDomain}
         />
 
-        {/* 6. Competitive Programming */}
+        {/* 6. Technical Competencies (Depth over Breadth) */}
+        <SkillsSection
+          currentDomain={currentDomain}
+          onSelectDomain={handleDomainChange}
+        />
+
+        {/* 7. Competitive Programming (LeetCode 500+, Codeforces 1200+, CodeChef 3★) */}
         <CompetitiveProgramming />
 
-        {/* 7. Education */}
+        {/* 8. Formal Education (B.Tech at MVSR & Diploma at KDR) */}
         <EducationSection />
 
-        {/* 8. Contact & Socials */}
+        {/* 9. Contact & Collaboration */}
         <ContactSection />
       </main>
 
