@@ -22,30 +22,27 @@ export const ProjectsSection: React.FC = () => {
   return (
     <section
       id="projects"
-      className="relative py-24 bg-[#0B1220] border-b border-blue-900/30 overflow-hidden"
+      className="relative py-24 bg-[#f5f0e4] border-b border-[#4a2810]/10 overflow-hidden"
     >
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-full max-w-6xl h-96 bg-[#3B82F6]/5 rounded-full blur-3xl pointer-events-none" />
-
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#101A2B] border border-blue-500/30 text-xs font-code text-[#22D3EE] mb-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#a8c4e8] border border-[#4a2810]/15 text-xs font-code font-bold text-[#4a2810] mb-4">
             <Sparkles className="w-3.5 h-3.5" />
             <span>PRODUCTION-STYLE SYSTEMS</span>
           </div>
 
-          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#F8FAFC] mb-4">
+          <h2 className="font-archivo text-3xl sm:text-4xl md:text-5xl text-[#4a2810] tracking-tight mb-4">
             Featured Projects
           </h2>
 
-          <p className="text-base sm:text-lg text-[#94A3B8] leading-relaxed">
+          <p className="text-base sm:text-lg text-[#6b3a1a] leading-relaxed">
             Engineering architectures built for high resiliency, autonomous Kubernetes remediation, RAG document intelligence, and real-time client-side neural vision.
           </p>
         </div>
 
-        {/* Projects List — Large Premium Cards */}
+        {/* Projects List — Large Clean Cards */}
         <div className="space-y-12">
           {PORTFOLIO_DATA.projects.map((project: FeaturedProject) => {
             const isArchitectureExpanded = activeArchitectureId === project.id;
@@ -53,11 +50,11 @@ export const ProjectsSection: React.FC = () => {
             return (
               <div
                 key={project.id}
-                className="engineering-card rounded-3xl p-7 sm:p-10 border border-blue-500/20 hover:border-[#22D3EE]/50 transition-all shadow-[0_20px_50px_rgba(5,7,13,0.8)] relative group overflow-hidden"
+                className="sh-card rounded-3xl p-7 sm:p-10 border border-[#4a2810]/15 bg-white shadow-md relative group overflow-hidden"
               >
                 {/* Accent Watermark */}
                 <span
-                  className="font-heading font-black text-8xl text-slate-800/15 absolute -top-4 right-8 select-none pointer-events-none"
+                  className="font-archivo font-black text-8xl text-[#4a2810]/06 absolute -top-4 right-8 select-none pointer-events-none"
                   aria-hidden="true"
                 >
                   {project.number}
@@ -70,32 +67,32 @@ export const ProjectsSection: React.FC = () => {
                     <div>
                       {/* Category Badge & Project Number */}
                       <div className="flex flex-wrap items-center gap-3 mb-3">
-                        <span className="font-code text-xs font-bold text-[#22D3EE] px-3 py-1 rounded-full bg-[#070A12] border border-cyan-900/60 shadow">
+                        <span className="font-code text-xs font-bold text-[#4a2810] px-3.5 py-1 rounded-full bg-[#a8c4e8] border border-[#4a2810]/15 shadow-xs">
                           {project.category}
                         </span>
-                        <span className="font-code text-xs text-[#a8c4e8] bg-[#101A2B] px-2.5 py-0.5 rounded-md border border-blue-950">
+                        <span className="font-code text-xs font-bold text-[#8b5a2a] bg-[#faf6f0] px-3 py-1 rounded-full border border-[#4a2810]/15">
                           Project {project.number}
                         </span>
                       </div>
 
                       {/* Title */}
-                      <h3 className="font-heading text-2xl sm:text-3xl font-bold text-[#F8FAFC] group-hover:text-[#22D3EE] transition-colors mb-4">
+                      <h3 className="font-archivo text-2xl sm:text-3xl text-[#4a2810] group-hover:text-[#6b3a1a] transition-colors mb-4">
                         {project.title}
                       </h3>
 
                       {/* Description */}
-                      <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed mb-6">
+                      <p className="text-sm sm:text-base text-[#6b3a1a] leading-relaxed mb-6">
                         {project.description}
                       </p>
 
                       {/* Key Features Highlights */}
                       <div className="space-y-2.5 mb-6">
-                        <span className="font-code text-xs uppercase tracking-wider text-slate-400 font-semibold block">
+                        <span className="font-code text-xs uppercase tracking-wider text-[#4a2810] font-bold block">
                           Key Engineering Highlights:
                         </span>
                         {project.keyHighlights.map((hl, idx) => (
-                          <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#CBD5E1]">
-                            <CheckCircle2 className="w-4 h-4 text-[#22D3EE] shrink-0 mt-0.5" />
+                          <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#4a2810]">
+                            <CheckCircle2 className="w-4 h-4 text-[#4a2810] shrink-0 mt-0.5" />
                             <span>{hl}</span>
                           </div>
                         ))}
@@ -103,14 +100,14 @@ export const ProjectsSection: React.FC = () => {
 
                       {/* Tech Stack Chips */}
                       <div className="mb-6">
-                        <span className="font-code text-xs uppercase tracking-wider text-slate-400 font-semibold block mb-2">
+                        <span className="font-code text-xs uppercase tracking-wider text-[#8b5a2a] font-bold block mb-2">
                           Technology Stack:
                         </span>
                         <div className="flex flex-wrap gap-2">
                           {project.techStack.map((tech) => (
                             <span
                               key={tech}
-                              className="px-2.5 py-1 rounded-lg bg-[#070A12] text-[#a8c4e8] border border-blue-950 text-xs font-code group-hover:border-blue-900 transition-colors"
+                              className="px-2.5 py-1 rounded-lg bg-[#faf6f0] text-[#4a2810] border border-[#4a2810]/15 text-xs font-code font-medium hover:bg-[#a8c4e8] transition-colors"
                             >
                               {tech}
                             </span>
@@ -120,16 +117,16 @@ export const ProjectsSection: React.FC = () => {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-blue-950/70">
+                    <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-[#4a2810]/10">
                       {/* GitHub Button */}
                       <a
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#3B82F6] to-[#2563EB] hover:from-[#60A5FA] hover:to-[#3B82F6] text-white text-xs font-semibold shadow-md hover:shadow-lg transition-all"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#4a2810] hover:bg-[#6b3a1a] text-[#f5f0e4] text-xs font-bold shadow-sm transition-all hover:scale-105 active:scale-95"
                         aria-label={`View ${project.title} GitHub repository in a new tab`}
                       >
-                        <GithubIcon className="w-4 h-4" />
+                        <GithubIcon className="w-4 h-4 text-[#f5f0e4]" />
                         <span>Source Code</span>
                         <ExternalLink className="w-3 h-3 ml-0.5" />
                       </a>
@@ -140,7 +137,7 @@ export const ProjectsSection: React.FC = () => {
                           href={project.liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#070A12] hover:bg-[#15233B] text-[#22D3EE] border border-cyan-900/60 hover:border-[#22D3EE] text-xs font-semibold transition-all"
+                          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#a8c4e8] hover:bg-[#c8daf4] text-[#4a2810] border border-[#4a2810]/15 text-xs font-bold transition-all hover:scale-105 active:scale-95"
                         >
                           <span>Live Demo</span>
                           <ExternalLink className="w-3.5 h-3.5" />
@@ -151,9 +148,9 @@ export const ProjectsSection: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => toggleArchitecture(project.id)}
-                        className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#101A2B] hover:bg-[#15233B] text-[#a8c4e8] hover:text-[#22D3EE] border border-blue-900/40 text-xs font-code transition-all ml-auto"
+                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white hover:bg-[#faf6f0] text-[#4a2810] border border-[#4a2810]/20 text-xs font-code font-semibold transition-all ml-auto"
                       >
-                        <GitBranch className="w-3.5 h-3.5 text-[#3B82F6]" />
+                        <GitBranch className="w-3.5 h-3.5 text-[#4a2810]" />
                         <span>{isArchitectureExpanded ? 'Hide Architecture' : 'View Architecture'}</span>
                         {isArchitectureExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
                       </button>
@@ -161,18 +158,18 @@ export const ProjectsSection: React.FC = () => {
 
                   </div>
 
-                  {/* Right Side: Architecture Visualization Box */}
+                  {/* Right Side: Architecture Flow Diagram Box */}
                   <div className="lg:col-span-5 flex flex-col justify-between h-full">
-                    <div className="p-5 sm:p-6 rounded-2xl bg-[#070A12] border border-blue-900/50 relative overflow-hidden">
+                    <div className="p-5 sm:p-6 rounded-2xl bg-[#faf6f0] border border-[#4a2810]/15 relative overflow-hidden">
                       
-                      <div className="flex items-center justify-between mb-4 pb-3 border-b border-blue-950">
+                      <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#4a2810]/10">
                         <div className="flex items-center gap-2">
-                          <Cpu className="w-4 h-4 text-[#22D3EE]" />
-                          <span className="font-code text-xs font-bold text-[#F8FAFC]">
+                          <Cpu className="w-4 h-4 text-[#4a2810]" />
+                          <span className="font-code text-xs font-bold text-[#4a2810]">
                             Pipeline & System Flow
                           </span>
                         </div>
-                        <span className="text-[10px] font-code text-emerald-400 bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-900">
+                        <span className="text-[10px] font-code text-[#4a2810] bg-[#a8c4e8] px-2.5 py-0.5 rounded-full font-bold border border-[#4a2810]/15">
                           Active Loop
                         </span>
                       </div>
@@ -183,14 +180,14 @@ export const ProjectsSection: React.FC = () => {
                           const isLast = sIdx === project.architectureSteps.length - 1;
                           return (
                             <div key={sIdx} className="flex flex-col">
-                              <div className="flex items-center gap-3 p-2 rounded-lg bg-[#0B1220] border border-blue-950 text-xs font-code text-[#F8FAFC] hover:border-[#3B82F6]/60 transition-colors">
-                                <span className="w-5 h-5 rounded-full bg-[#3B82F6]/20 text-[#38BDF8] flex items-center justify-center text-[10px] font-bold shrink-0">
+                              <div className="flex items-center gap-3 p-2.5 rounded-xl bg-white border border-[#4a2810]/12 text-xs font-code text-[#4a2810] shadow-xs">
+                                <span className="w-5 h-5 rounded-full bg-[#a8c4e8] text-[#4a2810] flex items-center justify-center text-[10px] font-bold shrink-0">
                                   {sIdx + 1}
                                 </span>
                                 <span className="font-medium truncate">{step}</span>
                               </div>
                               {!isLast && (
-                                <div className="pl-4 py-1 flex items-center text-slate-600 text-xs font-code">
+                                <div className="pl-4 py-1 flex items-center text-[#8b5a2a] text-xs font-code">
                                   <span>↓</span>
                                 </div>
                               )}
@@ -200,8 +197,8 @@ export const ProjectsSection: React.FC = () => {
                       </div>
 
                       {/* Bottom Metric Pill */}
-                      <div className="mt-4 pt-3 border-t border-blue-950/80 flex items-center justify-between text-[11px] font-code text-[#94A3B8]">
-                        <span className="text-[#a8c4e8] font-semibold">{project.metricsBadge}</span>
+                      <div className="mt-4 pt-3 border-t border-[#4a2810]/10 flex items-center justify-between text-[11px] font-code text-[#6b3a1a]">
+                        <span className="font-bold text-[#4a2810]">{project.metricsBadge}</span>
                       </div>
 
                     </div>
@@ -211,10 +208,10 @@ export const ProjectsSection: React.FC = () => {
 
                 {/* Expanded Architecture Deep-Dive Drawer */}
                 {isArchitectureExpanded && project.architectureDetails && (
-                  <div className="mt-8 pt-8 border-t border-blue-900/40 animate-in fade-in slide-in-from-top-4 duration-300">
+                  <div className="mt-8 pt-8 border-t border-[#4a2810]/15 animate-in fade-in slide-in-from-top-4 duration-300">
                     <div className="flex items-center gap-2 mb-4">
-                      <Layers className="w-4 h-4 text-[#22D3EE]" />
-                      <h4 className="font-heading font-bold text-base text-[#F8FAFC]">
+                      <Layers className="w-4 h-4 text-[#4a2810]" />
+                      <h4 className="font-archivo text-base text-[#4a2810]">
                         In-Depth Architecture Breakdown — {project.title.split('—')[0]}
                       </h4>
                     </div>
@@ -223,17 +220,17 @@ export const ProjectsSection: React.FC = () => {
                       {project.architectureDetails.map((step, idx) => (
                         <div
                           key={idx}
-                          className="p-4 rounded-xl bg-[#070A12] border border-blue-950 flex flex-col justify-between"
+                          className="p-4 rounded-xl bg-[#faf6f0] border border-[#4a2810]/15 flex flex-col justify-between"
                         >
                           <div>
-                            <div className="font-code text-xs font-bold text-[#22D3EE] mb-1">
+                            <div className="font-code text-xs font-bold text-[#4a2810] mb-1">
                               {step.step}
                             </div>
-                            <p className="text-xs text-[#94A3B8] leading-relaxed mb-3">
+                            <p className="text-xs text-[#6b3a1a] leading-relaxed mb-3">
                               {step.description}
                             </p>
                           </div>
-                          <span className="font-code text-[10px] text-[#3B82F6] bg-blue-950/40 px-2 py-0.5 rounded w-fit border border-blue-900">
+                          <span className="font-code text-[10px] text-[#4a2810] bg-[#a8c4e8] px-2.5 py-0.5 rounded-full w-fit font-semibold border border-[#4a2810]/10">
                             {step.tech}
                           </span>
                         </div>

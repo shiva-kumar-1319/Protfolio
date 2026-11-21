@@ -2,29 +2,28 @@
 
 @layer base {
   :root {
-    --bg-primary: #070a12;
-    --bg-secondary: #0b1220;
-    --bg-card: #101a2b;
-    --border-subtle: rgba(59, 130, 246, 0.15);
-    --border-accent: rgba(34, 211, 238, 0.35);
-    --accent-blue: #3b82f6;
-    --accent-cyan: #22d3ee;
-    --accent-violet: #8b5cf6;
-    --accent-sky: #a8c4e8;
-    --text-primary: #f8fafc;
-    --text-muted: #94a3b8;
+    --cream: #f5f0e4;
+    --offwhite: #faf6f0;
+    --white: #ffffff;
+    --brown: #4a2810;
+    --brown-mid: #6b3a1a;
+    --brown-light: #8b5a2a;
+    --sky: #a8c4e8;
+    --sky-light: #c8daf4;
+    --text-light: #f0e8d8;
+    --border-warm: rgba(74, 40, 16, 0.12);
   }
 
   html {
     scroll-behavior: smooth;
-    background-color: #070a12;
-    color: #f8fafc;
+    background-color: var(--cream);
+    color: var(--brown);
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
 
   body {
-    background-color: #070a12;
-    color: #f8fafc;
+    background-color: var(--cream);
+    color: var(--brown);
     overflow-x: hidden;
     margin: 0;
     padding: 0;
@@ -33,24 +32,24 @@
 
   /* Accessible focus rings */
   :focus-visible {
-    outline: 2px solid #22d3ee;
+    outline: 2px solid var(--sky);
     outline-offset: 3px;
   }
 
-  /* Custom Sleek Scrollbar */
+  /* Custom Warm Scrollbar */
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 9px;
   }
   ::-webkit-scrollbar-track {
-    background: #070a12;
+    background: #f5f0e4;
   }
   ::-webkit-scrollbar-thumb {
-    background: #101a2b;
+    background: #c8daf4;
     border-radius: 4px;
-    border: 1px solid rgba(59, 130, 246, 0.25);
+    border: 2px solid #f5f0e4;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #3b82f6;
+    background: #4a2810;
   }
 
   /* Reduced Motion Accessibility */
@@ -66,79 +65,112 @@
   }
 }
 
-/* Typography Helpers */
-.font-heading {
-  font-family: 'Space Grotesk', sans-serif;
+/* Typography Classes */
+.font-archivo {
+  font-family: 'Archivo Black', sans-serif;
+}
+
+.font-script {
+  font-family: 'Dancing Script', cursive;
 }
 
 .font-code {
   font-family: 'JetBrains Mono', monospace;
 }
 
-/* Ambient Engineering Background Grid */
-.bg-grid-cyber {
-  background-size: 40px 40px;
+/* Continuous Marquee Ticker */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Subtle Warm Grid Background */
+.bg-warm-grid {
+  background-size: 36px 36px;
   background-image: 
-    linear-gradient(to right, rgba(59, 130, 246, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(59, 130, 246, 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgba(74, 40, 16, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(74, 40, 16, 0.035) 1px, transparent 1px);
 }
 
-.bg-radial-glow {
-  background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.12) 0%, rgba(34, 211, 238, 0.03) 40%, transparent 70%);
+/* Shrinithi-Style Card */
+.sh-card {
+  background-color: #ffffff;
+  border: 1.5px solid rgba(74, 40, 16, 0.12);
+  border-radius: 1.25rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.bg-radial-glow-cyan {
-  background: radial-gradient(circle at 80% 20%, rgba(34, 211, 238, 0.08) 0%, transparent 60%);
+.sh-card:hover {
+  border-color: #4a2810;
+  box-shadow: 0 18px 36px -12px rgba(74, 40, 16, 0.16);
+  transform: translateY(-3px);
 }
 
-/* Glassmorphism Cards */
-.engineering-card {
-  background: linear-gradient(135deg, rgba(16, 26, 43, 0.85) 0%, rgba(11, 18, 32, 0.9) 100%);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(59, 130, 246, 0.16);
-  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+/* Interactive Hover Inversion Card (Cards that turn dark brown on hover like Shrinithi's) */
+.sh-card-invert {
+  background-color: #ffffff;
+  border: 1.5px solid rgba(74, 40, 16, 0.12);
+  border-radius: 1.25rem;
+  transition: all 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  color: #4a2810;
 }
 
-.engineering-card:hover {
-  border-color: rgba(34, 211, 238, 0.4);
-  box-shadow: 0 16px 36px -10px rgba(59, 130, 246, 0.25);
-  transform: translateY(-2px);
+.sh-card-invert:hover {
+  background-color: #4a2810;
+  border-color: #4a2810;
+  color: #f0e8d8;
+  box-shadow: 0 20px 40px -10px rgba(74, 40, 16, 0.28);
+  transform: translateY(-4px);
 }
 
-/* High-tech pill badge */
-.tech-badge {
-  background: rgba(16, 26, 43, 0.9);
-  border: 1px solid rgba(59, 130, 246, 0.25);
-  color: #94a3b8;
+.sh-card-invert:hover .invert-num {
+  color: #a8c4e8;
+}
+
+.sh-card-invert:hover .invert-title {
+  color: #ffffff;
+}
+
+.sh-card-invert:hover .invert-sub {
+  color: #f0e8d8;
+}
+
+.sh-card-invert:hover .invert-icon-bg {
+  background-color: #6b3a1a;
+  border-color: rgba(168, 196, 232, 0.3);
+  color: #a8c4e8;
+}
+
+/* Badges */
+.sh-badge {
+  background-color: #faf6f0;
+  border: 1px solid rgba(74, 40, 16, 0.14);
+  color: #4a2810;
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.75rem;
   transition: all 0.2s ease;
 }
 
-.tech-badge:hover {
-  border-color: #22d3ee;
-  color: #f8fafc;
-  background: rgba(34, 211, 238, 0.08);
-}
-
-/* Gradient Text */
-.gradient-text-electric {
-  background: linear-gradient(135deg, #f8fafc 30%, #a8c4e8 70%, #22d3ee 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.gradient-text-accent {
-  background: linear-gradient(135deg, #3b82f6 0%, #22d3ee 60%, #a8c4e8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.gradient-text-violet {
-  background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 60%, #22d3ee 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.sh-badge-sky {
+  background-color: #a8c4e8;
+  border: 1px solid rgba(74, 40, 16, 0.15);
+  color: #4a2810;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
 
 /* Terminal Cursor Blink */
@@ -149,20 +181,10 @@
 
 .cursor-blink {
   display: inline-block;
-  width: 8px;
-  height: 15px;
-  background-color: #22d3ee;
-  margin-left: 2px;
+  width: 7px;
+  height: 14px;
+  background-color: #4a2810;
+  margin-left: 3px;
   vertical-align: middle;
   animation: blink 1s step-start infinite;
-}
-
-/* Smooth pulse animation */
-@keyframes softPulse {
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.04); }
-}
-
-.animate-soft-pulse {
-  animation: softPulse 3.5s ease-in-out infinite;
 }

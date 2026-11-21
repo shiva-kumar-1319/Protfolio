@@ -23,8 +23,8 @@ export const InteractiveBackground: React.FC = () => {
 
     window.addEventListener('resize', handleResize);
 
-    // Particle nodes for faint neural network / distributed mesh
-    const nodeCount = Math.min(Math.floor((width * height) / 22000), 55);
+    // Warm, ambient particle nodes
+    const nodeCount = Math.min(Math.floor((width * height) / 28000), 40);
     const nodes: {
       x: number;
       y: number;
@@ -34,15 +34,15 @@ export const InteractiveBackground: React.FC = () => {
       color: string;
     }[] = [];
 
-    const colors = ['#3B82F6', '#22D3EE', '#8B5CF6', '#a8c4e8'];
+    const colors = ['#6b3a1a', '#a8c4e8', '#c8daf4', '#8b5a2a'];
 
     for (let i = 0; i < nodeCount; i++) {
       nodes.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: prefersReducedMotion ? 0 : (Math.random() - 0.5) * 0.35,
-        vy: prefersReducedMotion ? 0 : (Math.random() - 0.5) * 0.35,
-        radius: Math.random() * 1.5 + 0.8,
+        vx: prefersReducedMotion ? 0 : (Math.random() - 0.5) * 0.3,
+        vy: prefersReducedMotion ? 0 : (Math.random() - 0.5) * 0.3,
+        radius: Math.random() * 1.6 + 0.8,
         color: colors[Math.floor(Math.random() * colors.length)],
       });
     }
@@ -50,17 +50,17 @@ export const InteractiveBackground: React.FC = () => {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Draw faint interconnecting edges
+      // Faint interconnecting network lines
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const dx = nodes[i].x - nodes[j].x;
           const dy = nodes[i].y - nodes[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 130) {
-            const alpha = (1 - dist / 130) * 0.12;
-            ctx.strokeStyle = `rgba(59, 130, 246, ${alpha})`;
-            ctx.lineWidth = 0.8;
+          if (dist < 120) {
+            const alpha = (1 - dist / 120) * 0.08;
+            ctx.strokeStyle = `rgba(74, 40, 16, ${alpha})`;
+            ctx.lineWidth = 0.7;
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
@@ -101,7 +101,7 @@ export const InteractiveBackground: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0 opacity-40"
+      className="fixed inset-0 pointer-events-none z-0 opacity-25"
       aria-hidden="true"
     />
   );

@@ -16,28 +16,28 @@ import { Footer } from './components/Footer';
 
 export const App: React.FC = () => {
   return (
-    <div className="relative min-h-screen bg-[#070A12] text-[#F8FAFC] selection:bg-[#3B82F6]/30 selection:text-[#22D3EE]">
+    <div className="relative min-h-screen bg-[#f5f0e4] text-[#4a2810] selection:bg-[#a8c4e8] selection:text-[#4a2810]">
       {/* Top Scroll Progress Indicator */}
       <ScrollProgressBar />
 
-      {/* Subtle Distributed Network Mesh Canvas */}
+      {/* Subtle Ambient Mesh Canvas */}
       <InteractiveBackground />
 
-      {/* Sticky Navigation Header */}
+      {/* Sticky Navigation Header with Running Marquee Ticker */}
       <Navbar />
 
       {/* Main Landmark */}
       <main id="main-content" className="relative z-10">
-        {/* 1. Hero Section: First Impression */}
+        {/* 1. Hero Section: First Impression with Photo & Direct Action Buttons */}
         <HeroSection />
 
-        {/* 2. Quick Profile Statistics: 4 Metric Cards */}
+        {/* 2. Quick Profile Statistics: Inversion Metric Cards */}
         <QuickStatsSection />
 
-        {/* 3. About Me: 4 Engineering Focus Areas */}
+        {/* 3. About Me: Engineering Philosophy & Focus Areas */}
         <AboutSection />
 
-        {/* 4. Technical Skills: Categorized Cards & Badges */}
+        {/* 4. Technical Skills: Categorized Cards & Search */}
         <SkillsSection />
 
         {/* 5. Featured Projects: CloudPulse, NeuralQuery, IDQS, Animal Keypoint */}
@@ -55,11 +55,11 @@ export const App: React.FC = () => {
         {/* 9. GitHub Analytics & Activity */}
         <GitHubAnalytics />
 
-        {/* 10. Contact Section */}
+        {/* 10. Contact Section with Let's Build Banner */}
         <ContactSection />
       </main>
 
-      {/* Footer */}
+      {/* Footer with Dancing Script Signature */}
       <Footer />
     </div>
   );

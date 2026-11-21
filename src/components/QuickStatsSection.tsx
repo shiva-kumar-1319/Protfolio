@@ -28,20 +28,20 @@ export const QuickStatsSection: React.FC = () => {
       case 'Code2':
         return <Code2 className="w-5 h-5 text-[#FFA116]" />;
       case 'Zap':
-        return <Zap className="w-5 h-5 text-[#22D3EE]" />;
+        return <Zap className="w-5 h-5 text-[#4a2810]" />;
       case 'Award':
-        return <Award className="w-5 h-5 text-[#3B82F6]" />;
+        return <Award className="w-5 h-5 text-[#4a2810]" />;
       case 'Trophy':
-        return <Trophy className="w-5 h-5 text-[#A855F7]" />;
+        return <Trophy className="w-5 h-5 text-[#4a2810]" />;
       default:
-        return <Award className="w-5 h-5 text-[#22D3EE]" />;
+        return <Award className="w-5 h-5 text-[#4a2810]" />;
     }
   };
 
   return (
     <section
       ref={sectionRef}
-      className="relative py-12 bg-[#070A12] border-y border-blue-900/30 z-20"
+      className="relative py-12 bg-[#f5f0e4] border-b border-[#4a2810]/10 z-20"
       aria-label="Key Engineering Metrics"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -49,38 +49,35 @@ export const QuickStatsSection: React.FC = () => {
           {PORTFOLIO_DATA.quickStats.map((stat, idx) => (
             <div
               key={stat.id}
-              className={`engineering-card rounded-2xl p-6 relative group overflow-hidden transition-all duration-500 ${
+              className={`sh-card-invert rounded-2xl p-6 relative group overflow-hidden transition-all duration-300 ${
                 isVisible
                   ? 'opacity-100 translate-y-0'
                   : 'opacity-0 translate-y-6'
               }`}
               style={{ transitionDelay: `${idx * 100}ms` }}
             >
-              {/* Subtle accent corner glow */}
-              <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-blue-500/10 via-cyan-500/5 to-transparent rounded-bl-full pointer-events-none group-hover:from-blue-500/20 transition-all duration-300" />
-
               <div className="flex items-center justify-between mb-3">
-                <div className="p-2.5 rounded-xl bg-[#070A12] border border-blue-900/50 group-hover:border-[#3B82F6]/60 transition-colors">
+                <div className="invert-icon-bg p-2.5 rounded-xl bg-[#faf6f0] border border-[#4a2810]/15 transition-colors">
                   {getIcon(stat.iconName)}
                 </div>
-                <span className="font-code text-[11px] text-[#94A3B8] group-hover:text-[#a8c4e8] transition-colors flex items-center gap-0.5">
+                <span className="font-code text-xs text-[#8b5a2a] group-hover:text-[#a8c4e8] transition-colors flex items-center gap-0.5 font-bold">
                   <span>0{idx + 1}</span>
-                  <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <ArrowUpRight className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
                 </span>
               </div>
 
-              {/* Big Stat Value */}
-              <div className="font-heading text-3xl sm:text-4xl font-extrabold text-[#F8FAFC] tracking-tight group-hover:text-[#22D3EE] transition-colors mb-1">
+              {/* Big Stat Value in Archivo Black */}
+              <div className="invert-num font-archivo text-3xl sm:text-4xl text-[#4a2810] tracking-tight transition-colors mb-1">
                 {stat.value}
               </div>
 
               {/* Stat Main Label */}
-              <div className="text-sm font-semibold text-[#F8FAFC] mb-1">
+              <div className="invert-title text-sm font-bold text-[#4a2810] mb-1 transition-colors">
                 {stat.label}
               </div>
 
               {/* Sub-label */}
-              <div className="text-xs text-[#94A3B8] font-code">
+              <div className="invert-sub text-xs text-[#6b3a1a] font-code transition-colors">
                 {stat.sublabel}
               </div>
             </div>
